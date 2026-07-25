@@ -410,7 +410,10 @@ the dev links simply stop being returned outside Development.
 - Match the Grained theme + UI kit; use `DataTable` for lists.
 - Verify changes end-to-end (curl for API, `npm run e2e` / Playwright for UI) — that's how
   everything here was validated.
-- No git in this repo yet; make backups before destructive changes.
+- **Git**: initialized 25 July 2026, default branch `main`. Identity is set **repo-local**
+  (`git config user.name/user.email`), not global. `.gitignore` covers `bin/`, `obj/`,
+  `node_modules/`, `dist/`, Playwright reports, `.DS_Store` and `.claude/settings.local.json`.
+  No remote configured yet, and `gh` CLI is **not** installed on this machine.
 
 ## 11. Pointers
 
