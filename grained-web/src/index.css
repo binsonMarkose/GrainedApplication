@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Enable `dark:` utilities driven by data-theme="dark" on <html> (used for the sidebar, whose green
+   surface is deliberately kept out of the automatic token-swap so we can restyle it explicitly). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Toast pop-in (used by the global Toast component) */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Grained brand theme — exposed to Tailwind as bg-grove, text-gold, font-display, etc. */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-logo: Georgia, "Times New Roman", serif; /* the "grained" logo wordmark (matches brand SVGs) */
+
+  --color-grove: #1E4B2C;
+  --color-grove-deep: #16371F;
+  --color-gold: #C29A45;
+  --color-gold-soft: #D9B45C;
+  --color-leaf: #2E6B3E;
+  --color-leaf-light: #A8CD9C;
+  --color-cream: #F8F5EC;
+  --color-cream-deep: #F1EBDC;
+  --color-ink: #22301F;
+
+  /* Text-role tokens (kept separate from the same-named *surface* colors so light-on-dark text and
+     dark-on-light surfaces can diverge in dark mode). In light mode these equal grove-deep / grove /
+     cream, so nothing changes; the dark theme below re-points only the text ones. */
+  --color-heading: #16371F; /* headings — mirrors grove-deep in light mode */
+  --color-accent: #1E4B2C;  /* links / accents — mirrors grove in light mode */
+  --color-oncream: #F8F5EC; /* light text that sits on dark green / gold surfaces — always light */
+  --color-gold-ink: #8A6D1D; /* readable gold text on gold-tinted pills/banners (dark gold in light mode) */
+}
+
+/* ---- Dark theme: driven by data-theme="dark" on <html> (toggled after login). Only CSS variables
+   are re-pointed, so every bg-cream / bg-white / text-ink / text-heading utility flips automatically
+   with no per-component dark: classes. Surfaces (grove sidebar, gold, leaf, gradients) stay as-is. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-cream: #1B2616;      /* page background — a softer green dark (lifted from near-black) */
+  --color-cream-deep: #33402C; /* borders + subtle raised surfaces (table headers) */
+  --color-white: #243020;      /* cards / inputs / modals — a step lighter than the page for depth */
+  --color-ink: #E8E6DC;        /* body text */
+  --color-heading: #D3E8C7;    /* headings — light leaf green */
+  --color-accent: #83C197;     /* links / accents — readable green on dark */
+  --color-gold: #D9B45C;       /* nudge gold brighter so it pops on dark */
+  --color-gold-ink: #E7C877;   /* light gold text so gold-tinted pills/banners stay legible on dark */
+  /* grove, grove-deep, gold-soft, leaf, leaf-light, oncream stay as defined above */
+}
+
+/* A faint film-grain texture over the sidebar (a nod to "grained") — layered above bg-grove. */
+.sidebar-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='sg'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23sg)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  background-blend-mode: soft-light;
+}
+
+/* Current-stage node on the Growth Path rail: a lime glow so the child's spot stands out. */
+.growth-node-here {
+  box-shadow: 0 0 12px 0 rgba(127, 184, 106, 0.55);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .growth-node-here {
+    animation: growth-node-glow 2.2s ease-in-out infinite;
+  }
+  @keyframes growth-node-glow {
+    0%, 100% { box-shadow: 0 0 9px 0 rgba(127, 184, 106, 0.45); }
+    50% { box-shadow: 0 0 17px 2px rgba(127, 184, 106, 0.8); }
+  }
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+/* ---- Kid delight: badge sparkle + avatar wiggle (motion-safe) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes grained-sparkle {
+    0%   { opacity: 0; transform: translate(0, 0); }
+    25%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--sx, 0), var(--sy, 0)); }
+  }
+  @keyframes grained-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-9deg); }
+    75%      { transform: rotate(9deg); }
+  }
+  .grained-wiggle:hover { animation: grained-wiggle 520ms ease-in-out; }
+}
+
+/* ---- Growth Path rail: rise-in of stage nodes + forest ---- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes grained-rise {
+    from { opacity: 0; transform: translateY(12px) scale(0.82); }
+    to   { opacity: 1; transform: none; }
+  }
+  .grained-rise { animation: grained-rise 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  @keyframes grained-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(194, 154, 69, 0.5); }
+    50%      { box-shadow: 0 0 0 6px rgba(194, 154, 69, 0); }
+  }
+  .grained-pulse { animation: grained-pulse 2.2s ease-in-out infinite; }
+}

@@ -1,0 +1,102 @@
+{
+  "grained": {
+    "color": {
+      "grove": { "value": "#1E4B2C", "type": "color" },
+      "grove-deep": { "value": "#16371F", "type": "color" },
+      "gold": { "value": "#C29A45", "type": "color" },
+      "gold-soft": { "value": "#D9B45C", "type": "color" },
+      "gold-deep": { "value": "#8A6D1D", "type": "color" },
+      "leaf": { "value": "#2E6B3E", "type": "color" },
+      "leaf-light": { "value": "#A8CD9C", "type": "color" },
+      "leaf-bright": { "value": "#3E8A50", "type": "color" },
+      "cream": { "value": "#F8F5EC", "type": "color" },
+      "cream-deep": { "value": "#F1EBDC", "type": "color" },
+      "ink": { "value": "#22301F", "type": "color" },
+      "error-text": { "value": "#B91C1C", "type": "color" },
+      "error-bg": { "value": "#FEF2F2", "type": "color" },
+      "error-border": { "value": "#FECACA", "type": "color" }
+    },
+    "fontFamily": {
+      "display": { "value": "Fraunces", "type": "fontFamilies" },
+      "sans": { "value": "Inter", "type": "fontFamilies" }
+    },
+    "fontWeight": {
+      "regular": { "value": "400", "type": "fontWeights" },
+      "medium": { "value": "500", "type": "fontWeights" },
+      "semibold": { "value": "600", "type": "fontWeights" },
+      "bold": { "value": "700", "type": "fontWeights" }
+    },
+    "fontSize": {
+      "xs": { "value": "12", "type": "fontSizes" },
+      "sm": { "value": "14", "type": "fontSizes" },
+      "base": { "value": "16", "type": "fontSizes" },
+      "lg": { "value": "18", "type": "fontSizes" },
+      "xl": { "value": "20", "type": "fontSizes" },
+      "2xl": { "value": "24", "type": "fontSizes" },
+      "3xl": { "value": "30", "type": "fontSizes" },
+      "4xl": { "value": "36", "type": "fontSizes" }
+    },
+    "borderRadius": {
+      "md": { "value": "8", "type": "borderRadius" },
+      "xl": { "value": "12", "type": "borderRadius" },
+      "2xl": { "value": "16", "type": "borderRadius" },
+      "3xl": { "value": "24", "type": "borderRadius" },
+      "full": { "value": "9999", "type": "borderRadius" }
+    },
+    "spacing": {
+      "1": { "value": "4", "type": "spacing" },
+      "2": { "value": "8", "type": "spacing" },
+      "3": { "value": "12", "type": "spacing" },
+      "4": { "value": "16", "type": "spacing" },
+      "5": { "value": "20", "type": "spacing" },
+      "6": { "value": "24", "type": "spacing" },
+      "8": { "value": "32", "type": "spacing" }
+    },
+    "boxShadow": {
+      "sm": {
+        "value": { "x": "0", "y": "1", "blur": "2", "spread": "0", "color": "rgba(0,0,0,0.05)", "type": "dropShadow" },
+        "type": "boxShadow"
+      },
+      "md": {
+        "value": { "x": "0", "y": "16", "blur": "40", "spread": "0", "color": "rgba(30,75,44,0.08)", "type": "dropShadow" },
+        "type": "boxShadow"
+      },
+      "modal": {
+        "value": { "x": "0", "y": "18", "blur": "50", "spread": "0", "color": "rgba(22,55,31,0.35)", "type": "dropShadow" },
+        "type": "boxShadow"
+      }
+    },
+    "type": {
+      "pageTitle": {
+        "value": { "fontFamily": "Fraunces", "fontWeight": "500", "fontSize": "30", "lineHeight": "115%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "sectionTitle": {
+        "value": { "fontFamily": "Fraunces", "fontWeight": "500", "fontSize": "18", "lineHeight": "120%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "statNumber": {
+        "value": { "fontFamily": "Fraunces", "fontWeight": "500", "fontSize": "36", "lineHeight": "110%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "body": {
+        "value": { "fontFamily": "Inter", "fontWeight": "400", "fontSize": "14", "lineHeight": "150%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "label": {
+        "value": { "fontFamily": "Inter", "fontWeight": "500", "fontSize": "14", "lineHeight": "140%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "button": {
+        "value": { "fontFamily": "Inter", "fontWeight": "600", "fontSize": "14", "lineHeight": "100%", "letterSpacing": "0" },
+        "type": "typography"
+      },
+      "pill": {
+        "value": { "fontFamily": "Inter", "fontWeight": "600", "fontSize": "12", "lineHeight": "100%", "letterSpacing": "0.02em" },
+        "type": "typography"
+      }
+    }
+  },
+  "$themes": [],
+  "$metadata": { "tokenSetOrder": ["grained"] }
+}

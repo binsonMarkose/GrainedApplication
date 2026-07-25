@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grained — Where Faith Is Ingrained | Children's Ministry Hub</title>
+<meta name="description" content="Grained is your children's ministry hub — Sunday School, VBS, events, family devotions and a child's Growing in Christ journey, in one platform. Built on the Word.">
+
+<!-- Favicon (official Grained app-icon tile) -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1E4B2C">
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grained">
+<meta property="og:title" content="Grained — where faith is ingrained">
+<meta property="og:description" content="Your children's ministry hub: Sunday School, VBS, events, registrations, attendance — and a visual Growing in Christ journey for every child.">
+<meta property="og:url" content="https://grained.org/">
+<meta property="og:image" content="https://grained.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Grained — where faith is ingrained">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Grained — where faith is ingrained">
+<meta name="twitter:description" content="Your children's ministry hub, where faith grows.">
+<meta name="twitter:image" content="https://grained.org/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grove:#1E4B2C; --grove-deep:#16371F;
+  --gold:#C29A45; --gold-soft:#D9B45C;
+  --leaf:#2E6B3E; --leaf-light:#A8CD9C;
+  --cream:#F8F5EC; --cream-deep:#F1EBDC; --ink:#22301F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.15;color:var(--grove)}
+
+/* decorative background rings */
+.bg-rings{position:fixed;top:-28vw;right:-28vw;width:70vw;height:70vw;pointer-events:none;z-index:0;opacity:.5;animation:slowspin 240s linear infinite}
+.bg-rings circle{fill:none;stroke:var(--gold);stroke-width:1;opacity:.22}
+@keyframes slowspin{to{transform:rotate(360deg)}}
+
+/* header */
+header{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;max-width:1120px;margin:0 auto;padding:26px 24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:44px;height:52px}
+.brand span{font-family:Georgia,'Times New Roman',serif;font-size:1.55rem;color:var(--grove);letter-spacing:.04em}
+nav a{color:var(--grove);text-decoration:none;font-size:.92rem;font-weight:500;margin-left:26px;opacity:.85;transition:opacity .2s}
+nav a:hover{opacity:1}
+nav a.cta{background:var(--grove);color:var(--cream);padding:10px 20px;border-radius:100px}
+nav a.cta:hover{background:var(--grove-deep)}
+@media(max-width:640px){nav a:not(.cta){display:none}}
+
+/* hero */
+.hero{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:48px 24px 96px}
+@media(max-width:880px){.hero{grid-template-columns:1fr;text-align:center;padding-top:16px}}
+.hero-logo{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.hero-logo svg{width:min(340px,74vw);height:auto}
+.logo-caption{opacity:0;text-align:center}
+.logo-caption .word{font-family:Georgia,'Times New Roman',serif;font-size:2.3rem;color:var(--grove);letter-spacing:.06em;line-height:1.1}
+.logo-caption .tag{font-size:.78rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:6px}
+.replay-hint{font-size:.72rem;color:#a9a390;margin-top:10px;opacity:0;transition:opacity .6s}
+.replay-hint.show{opacity:1}
+
+.sway{animation:sway 6s ease-in-out infinite;transform-origin:90px 104px;transform-box:view-box}
+@keyframes sway{0%,100%{transform:rotate(0deg)}50%{transform:rotate(1.6deg)}}
+
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.hero h1{font-size:clamp(2.3rem,4.4vw,3.4rem);margin-bottom:8px}
+.hero h1 em{font-style:italic;color:var(--leaf)}
+.tagline{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.15rem,2vw,1.4rem);color:var(--gold);margin-bottom:22px}
+.hero p.lead{font-size:1.06rem;max-width:46ch;margin-bottom:32px;color:#3d4a38}
+@media(max-width:880px){.hero p.lead{margin-left:auto;margin-right:auto}}
+
+/* signup */
+.signup{display:flex;gap:10px;max-width:460px}
+@media(max-width:880px){.signup{margin:0 auto}}
+@media(max-width:480px){.signup{flex-direction:column}}
+.signup input{flex:1;padding:15px 20px;border:1.5px solid #cfc7b2;border-radius:100px;font:inherit;font-size:.95rem;background:#fff;color:var(--ink);outline:none;transition:border-color .2s}
+.signup input:focus{border-color:var(--gold)}
+.signup button{padding:15px 28px;border:none;border-radius:100px;background:var(--grove);color:var(--cream);font:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.signup button:hover{background:var(--grove-deep);transform:translateY(-1px)}
+.signup-note{font-size:.8rem;color:#7c8474;margin-top:12px}
+.signup-thanks{display:none;font-weight:600;color:var(--leaf);margin-top:12px}
+
+/* sections */
+section{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:88px 24px}
+.section-eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+section h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:16px;max-width:22ch}
+section p.sub{max-width:60ch;color:#3d4a38;margin-bottom:48px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{background:#fff;border:1px solid #e8e1cf;border-radius:20px;padding:34px 30px;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(30,75,44,.08)}
+.card .num{font-family:'Fraunces',serif;font-size:.9rem;color:var(--gold);letter-spacing:.14em;margin-bottom:14px;display:block}
+.card h3{font-size:1.35rem;margin-bottom:10px}
+.card p{font-size:.94rem;color:#4a5544}
+.card p em{color:var(--grove);font-style:italic}
+
+.journey{background:var(--grove);border-radius:28px;padding:72px 48px;color:var(--cream)}
+@media(max-width:640px){.journey{padding:52px 26px}}
+.journey .section-eyebrow{color:var(--gold-soft)}
+.journey h2{color:var(--cream)}
+.journey p.sub{color:#cfdac6}
+.stages{display:flex;flex-wrap:wrap;gap:0;align-items:center;justify-content:center}
+.stage{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 22px;text-align:center}
+.stage .dot{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold-soft);display:grid;place-items:center;font-family:'Fraunces',serif;font-size:1.25rem;color:var(--gold-soft)}
+.stage span{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#cfdac6}
+.arrow{color:var(--gold-soft);opacity:.6;font-size:1.2rem}
+@media(max-width:760px){.arrow{display:none}}
+.journey .verse{margin-top:44px;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:#cfdac6}
+.journey .verse strong{color:var(--gold-soft);font-weight:500}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.product{border-radius:20px;padding:32px 28px;background:var(--cream-deep);border:1px solid #e8e1cf}
+.product.live{background:var(--grove);color:var(--cream);border-color:var(--grove)}
+.product.live h3{color:var(--cream)}
+.product.live p{color:#cfdac6}
+.product .badge{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:16px;background:rgba(194,154,69,.16);color:var(--gold)}
+.product.live .badge{background:var(--gold-soft);color:var(--grove-deep)}
+.product h3{font-size:1.3rem;margin-bottom:8px}
+.product p{font-size:.92rem;color:#4a5544}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+footer{position:relative;z-index:1;border-top:1px solid #e5ddc9;margin-top:40px;padding:44px 24px;text-align:center;font-size:.86rem;color:#7c8474}
+footer .foot-tag{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:1rem;margin-bottom:8px}
+footer a{color:var(--grove);text-decoration:none}
+
+@media (prefers-reduced-motion: reduce){.bg-rings,.sway{animation:none !important}}
+</style>
+</head>
+<body>
+
+<svg class="bg-rings" viewBox="0 0 600 600" aria-hidden="true">
+  <circle cx="300" cy="300" r="90"/><circle cx="303" cy="298" r="150"/>
+  <circle cx="298" cy="302" r="210"/><circle cx="301" cy="299" r="270"/>
+</svg>
+
+<header>
+  <a class="brand" href="#">
+    <svg viewBox="0 0 180 206" aria-hidden="true">
+      <g fill="none" stroke="#C29A45"><ellipse cx="90" cy="104" rx="16" ry="15.4" stroke-width="3.4"/><ellipse cx="89" cy="105" rx="28" ry="27.2" stroke-width="2.8"/><ellipse cx="91" cy="103" rx="40" ry="39.4" stroke-width="3.6"/><ellipse cx="90" cy="105" rx="52" ry="51" stroke-width="2.6"/><ellipse cx="89" cy="104" rx="64" ry="63.2" stroke-width="3.2"/></g>
+      <path d="M 90 106 C 88 84, 92 62, 90 34" fill="none" stroke="#F8F5EC" stroke-width="13" stroke-linecap="round"/>
+      <circle cx="90" cy="104" r="5.2" fill="#C29A45"/>
+      <path d="M 90 100 C 88 82, 92 60, 90 34" fill="none" stroke="#2E6B3E" stroke-width="4.6" stroke-linecap="round"/>
+      <path d="M 90 38 Q 73 34 67 15 Q 86 19 90 38 Z" fill="#2E6B3E"/>
+      <path d="M 90 31 Q 104 27 110 8 Q 93 12 90 31 Z" fill="#3E8A50"/>
+      <path d="M 90 166 C 72 157, 48 156, 20 162 L 20 186 C 48 180, 72 181, 90 190 C 108 181, 132 180, 160 186 L 160 162 C 132 156, 108 157, 90 166 Z" fill="#1E4B2C"/>
+      <g stroke="#F8F5EC" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".85"><path d="M 54 162 L 54 180" stroke-width="2.6"/><path d="M 46.5 168 L 61.5 168" stroke-width="2.6"/><path d="M 98 169 C 112 163, 130 163, 148 168"/><path d="M 98 177 C 112 171, 130 171, 148 176"/></g>
+      <path d="M 90 167 L 90 189" stroke="#F8F5EC" stroke-width="2.2" stroke-linecap="round"/>
+      <g fill="none" stroke="#1E4B2C" stroke-linecap="round"><path d="M 26 192 C 50 186.5, 72 187.5, 90 196 C 108 187.5, 130 186.5, 154 192" stroke-width="3"/><path d="M 33 198 C 54 193, 72 194, 90 202 C 108 194, 126 193, 147 198" stroke-width="3"/></g>
+    </svg>
+    <span>grained</span>
+  </a>
+  <nav>
+    <a href="#story">Our Story</a>
+    <a href="#journey">The Journey</a>
+    <a href="#platform">Platform</a>
+    <a href="#early" class="cta">Get Early Access</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <span class="eyebrow">For churches · Sunday Schools · families</span>
+    <h1>Your children's ministry hub, where faith <em>grows</em>.</h1>
+    <p class="tagline">Grained — where faith is ingrained.</p>
+    <p class="lead">One simple platform for children's ministry: Sunday School, VBS, events, registrations, attendance, parent updates — and a visual Growing in Christ journey that makes every child's growth visible, from seed to fruit.</p>
+    <form class="signup" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="email" name="email" placeholder="Your church email" required aria-label="Email address">
+      <button type="submit">Join the first churches</button>
+    </form>
+    <p class="signup-note">Free pilot for the first churches. No spam — just the launch.</p>
+    <p class="signup-thanks" id="thanks">Thank you — you're planted! We'll be in touch. 🌱</p>
+  </div>
+
+  <!-- ANIMATED LOGO: seed falls into the Bible -> rings grow -> sprout rises -> becomes the logo -->
+  <div class="hero-logo" id="logoStage" title="Click to replay">
+    <svg id="heroLogo" viewBox="0 0 180 206" role="img" aria-label="Grained mark: a seed falls into an open Bible and grows into a ringed sprout">
+      <g id="growGroup">
+        <g fill="none" stroke="#C29A45">
+          <ellipse class="ring" cx="90" cy="104" rx="16" ry="15.4" stroke-width="3.4"/>
+          <ellipse class="ring" cx="89" cy="105" rx="28" ry="27.2" stroke-width="2.8"/>
+          <ellipse class="ring" cx="91" cy="103" rx="40" ry="39.4" stroke-width="3.6"/>
+          <ellipse class="ring" cx="90" cy="105" rx="52" ry="51" stroke-width="2.6"/>
+          <ellipse class="ring" cx="89" cy="104" rx="64" ry="63.2" stroke-width="3.2"/>
+        </g>
+        <path id="halo" d="M 90 106 C 88 84, 92 62, 90 34" fill="none" stroke="#F8F5EC" stroke-width="13" stroke-linecap="round"/>
+        <path id="stem" d="M 90 100 C 88 82, 92 60, 90 34" fill="none" stroke="#2E6B3E" stroke-width="4.6" stroke-linecap="round"/>
+        <path id="leafL" d="M 90 38 Q 73 34 67 15 Q 86 19 90 38 Z" fill="#2E6B3E"/>
+        <path id="leafR" d="M 90 31 Q 104 27 110 8 Q 93 12 90 31 Z" fill="#3E8A50"/>
+        <circle id="seed" cx="90" cy="-12" r="5.2" fill="#C29A45"/>
+      </g>
+      <g id="bible">
+        <path d="M 90 166 C 72 157, 48 156, 20 162 L 20 186 C 48 180, 72 181, 90 190 C 108 181, 132 180, 160 186 L 160 162 C 132 156, 108 157, 90 166 Z" fill="#1E4B2C"/>
+        <g stroke="#F8F5EC" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".85">
+          <path d="M 54 162 L 54 180" stroke-width="2.6"/><path d="M 46.5 168 L 61.5 168" stroke-width="2.6"/>
+          <path d="M 98 169 C 112 163, 130 163, 148 168"/><path d="M 98 177 C 112 171, 130 171, 148 176"/>
+        </g>
+        <path d="M 90 167 L 90 189" stroke="#F8F5EC" stroke-width="2.2" stroke-linecap="round"/>
+        <g fill="none" stroke="#1E4B2C" stroke-linecap="round">
+          <path d="M 26 192 C 50 186.5, 72 187.5, 90 196 C 108 187.5, 130 186.5, 154 192" stroke-width="3"/>
+          <path d="M 33 198 C 54 193, 72 194, 90 202 C 108 194, 126 193, 147 198" stroke-width="3"/>
+        </g>
+      </g>
+    </svg>
+    <div class="logo-caption" id="caption">
+      <div class="word">grained</div>
+      <div class="tag">Where Faith Is Ingrained</div>
+    </div>
+    <div class="replay-hint" id="replayHint">click the logo to replay</div>
+  </div>
+</div>
+
+<section id="story">
+  <div class="reveal">
+    <div class="section-eyebrow">Why "Grained"</div>
+    <h2>A name with three layers — like the tree it draws.</h2>
+    <p class="sub">Our logo tells the whole story: an open Bible, a seed planted in it, growth rings forming around it, and a sprout breaking through. Here's what the name means.</p>
+  </div>
+  <div class="cards">
+    <div class="card reveal">
+      <span class="num">01 — INGRAINED</span>
+      <h3>Faith that becomes part of them</h3>
+      <p>When something is <em>ingrained</em>, it's so deep it's part of who you are. That's Deuteronomy 6 — faith impressed on children at the table, on the road, at bedtime. Not memorised for a quiz. Ingrained for a lifetime.</p>
+    </div>
+    <div class="card reveal">
+      <span class="num">02 — THE GRAIN OF WHEAT</span>
+      <h3>The seed story of the gospel</h3>
+      <p><em>"Unless a grain of wheat falls into the ground and dies, it remains alone; but if it dies, it bears much fruit."</em> — John 12:24. Every lesson is a seed. We help churches plant them well.</p>
+    </div>
+    <div class="card reveal">
+      <span class="num">03 — THE GRAIN OF THE TREE</span>
+      <h3>Growth you can see</h3>
+      <p>Wood grain is the record of a tree's growth — every season written into the timber. Grained makes each child's spiritual journey visible: to teachers, to parents, and to the child themselves.</p>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="journey reveal">
+    <div class="section-eyebrow">The heart of the platform</div>
+    <h2>The Growing in Christ journey</h2>
+    <p class="sub">Every child moves through a visible journey — not points on a leaderboard, but a tree growing from the Word.</p>
+    <div class="stages">
+      <div class="stage"><div class="dot">1</div><span>Seed</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">2</div><span>Roots</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">3</div><span>Sprout</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">4</div><span>Sapling</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">5</div><span>Tree</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">6</div><span>Fruit</span></div><div class="arrow">→</div>
+      <div class="stage"><div class="dot">7</div><span>Harvest</span></div>
+    </div>
+    <p class="verse"><strong>"I planted, Apollos watered, but God gave the growth."</strong> — 1 Corinthians 3:6</p>
+  </div>
+</section>
+
+<section id="platform">
+  <div class="reveal">
+    <div class="section-eyebrow">One platform, growing with your church</div>
+    <h2>Start with the children. Grow to the whole church.</h2>
+    <p class="sub">Grained launches where churches need help most — children's ministry — and expands with you into family discipleship and whole-church tools.</p>
+  </div>
+  <div class="products">
+    <div class="product live reveal">
+      <span class="badge">Launching first</span>
+      <h3>Grained Kids</h3>
+      <p>Sunday School &amp; VBS made simple: events, registrations with custom forms, classes, attendance, lessons, memory verses, quizzes and badges.</p>
+    </div>
+    <div class="product reveal">
+      <span class="badge">Coming next</span>
+      <h3>Grained Families</h3>
+      <p>A parent portal with weekly lesson summaries, family challenges and devotions — so Sunday continues at the kitchen table.</p>
+    </div>
+    <div class="product reveal">
+      <span class="badge">On the roadmap</span>
+      <h3>Grained Church</h3>
+      <p>A beautiful church website in minutes, whole-church events and groups — everything under your own subdomain, like <em>yourchurch.grained.org</em>.</p>
+    </div>
+    <div class="product reveal">
+      <span class="badge">On the roadmap</span>
+      <h3>Grained AI</h3>
+      <p>A teacher's helper for lesson plans, quiz questions, craft ideas and parent emails — biblically grounded, always editable.</p>
+    </div>
+  </div>
+</section>
+
+<section id="early" style="text-align:center">
+  <div class="reveal">
+    <div class="section-eyebrow">Early access</div>
+    <h2 style="margin-left:auto;margin-right:auto">Be one of the first churches.</h2>
+    <p class="sub" style="margin-left:auto;margin-right:auto">We're inviting a small number of pilot churches to shape Grained with us — free during the pilot, with a founding-church discount after launch.</p>
+    <form class="signup" style="margin:0 auto" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="email" name="email" placeholder="Your church email" required aria-label="Email address">
+      <button type="submit">Request an invite</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-tag">Grained — where faith is ingrained.</div>
+  <p>© 2026 Grained · Dublin, Ireland · <a href="mailto:binson.markose@grained.org">binson.markose@grained.org</a></p>
+</footer>
+
+<script>
+/* ============ scroll reveal ============ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============ signup handling ============
+   TO GO LIVE: create a free form at https://formspree.io and replace
+   YOUR_FORM_ID in both form actions. Until then, the fallback opens the
+   visitor's mail client so no signup is lost. */
+document.querySelectorAll('form.signup').forEach(f=>{
+  f.addEventListener('submit',(ev)=>{
+    if(f.action.includes('YOUR_FORM_ID')){
+      ev.preventDefault();
+      const email=f.querySelector('input').value;
+      window.location.href='mailto:binson.markose@grained.org?subject=Grained early access&body=Please add me to the pilot list: '+encodeURIComponent(email);
+      const t=document.getElementById('thanks'); if(t){t.style.display='block';}
+    }
+  });
+});
+
+/* ============ LOGO ANIMATION ============
+   Story: the Bible opens -> a seed falls from above into the Bible ->
+   growth rings ripple outward -> the stem rises -> leaves unfurl ->
+   the wordmark appears -> the sprout sways gently forever.
+   JS-driven (requestAnimationFrame) so it runs identically in every browser. */
+
+const $ = id => document.getElementById(id);
+const seed=$('seed'), stem=$('stem'), halo=$('halo'),
+      leafL=$('leafL'), leafR=$('leafR'), bible=$('bible'),
+      caption=$('caption'), growGroup=$('growGroup'),
+      stage=$('logoStage'), replayHint=$('replayHint');
+const rings=[...document.querySelectorAll('#heroLogo .ring')];
+const ringTargets=rings.map(r=>({rx:+r.getAttribute('rx'), ry:+r.getAttribute('ry')}));
+const stemLen=stem.getTotalLength(), haloLen=halo.getTotalLength();
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* easing */
+const easeOutCubic=t=>1-Math.pow(1-t,3);
+const easeInQuad=t=>t*t;
+const easeOutBack=t=>{const c=1.70158;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)};
+const bounce=t=>{ // fall with two small bounces at the end
+  const n=7.5625,d=2.75;
+  if(t<1/d)return n*t*t;
+  if(t<2/d)return n*(t-=1.5/d)*t+.75;
+  if(t<2.5/d)return n*(t-=2.25/d)*t+.9375;
+  return n*(t-=2.625/d)*t+.984375;
+};
+
+/* timeline engine: steps = {at, dur, tick(p)} */
+let rafId=null;
+function play(){
+  cancelAnimationFrame(rafId);
+  growGroup.classList.remove('sway');
+  replayHint.classList.remove('show');
+
+  /* reset state */
+  bible.style.opacity=0; bible.setAttribute('transform','translate(0,14)');
+  seed.setAttribute('cy',-12); seed.style.opacity=0;
+  rings.forEach(r=>{r.setAttribute('rx',0.01);r.setAttribute('ry',0.01);r.style.opacity=0;});
+  stem.style.strokeDasharray=stemLen; stem.style.strokeDashoffset=stemLen;
+  halo.style.strokeDasharray=haloLen; halo.style.strokeDashoffset=haloLen;
+  leafL.setAttribute('transform','translate(90,36) scale(0) translate(-90,-36)');
+  leafR.setAttribute('transform','translate(90,31) scale(0) translate(-90,-31)');
+  caption.style.opacity=0; caption.style.transform='translateY(10px)';
+
+  if(reduced){ finishInstant(); return; }
+
+  const steps=[
+    /* 1. Bible rises into place */
+    {at:.15,dur:.8,tick:p=>{const e=easeOutCubic(p);bible.style.opacity=e;bible.setAttribute('transform','translate(0,'+(14*(1-e))+')');}},
+    /* 2. seed falls from the sky into the Bible, bouncing to rest at the heart */
+    {at:1.0,dur:1.15,tick:p=>{seed.style.opacity=1;const y=-12+(104-(-12))*bounce(p);seed.setAttribute('cy',y);}},
+    /* 3. growth rings ripple outward, one season at a time */
+    ...rings.map((r,i)=>({at:2.3+i*.28,dur:.75,tick:p=>{const e=easeOutCubic(p);r.style.opacity=e;r.setAttribute('rx',Math.max(.01,ringTargets[i].rx*e));r.setAttribute('ry',Math.max(.01,ringTargets[i].ry*e));}})),
+    /* 4. the stem grows up through the rings */
+    {at:3.9,dur:1.0,tick:p=>{const e=easeOutCubic(p);halo.style.strokeDashoffset=haloLen*(1-e);stem.style.strokeDashoffset=stemLen*(1-e);}},
+    /* 5. leaves unfurl */
+    {at:4.85,dur:.6,tick:p=>{const e=easeOutBack(p);leafL.setAttribute('transform','translate(90,36) scale('+e+') translate(-90,-36)');}},
+    {at:5.05,dur:.6,tick:p=>{const e=easeOutBack(p);leafR.setAttribute('transform','translate(90,31) scale('+e+') translate(-90,-31)');}},
+    /* 6. the name appears */
+    {at:5.6,dur:.8,tick:p=>{const e=easeOutCubic(p);caption.style.opacity=e;caption.style.transform='translateY('+(10*(1-e))+'px)';}}
+  ];
+  const total=6.6;
+  const t0=performance.now();
+  function frame(now){
+    const t=(now-t0)/1000;
+    steps.forEach(s=>{
+      if(t>=s.at){ const p=Math.min(1,(t-s.at)/s.dur); s.tick(p); }
+    });
+    if(t<total){ rafId=requestAnimationFrame(frame); }
+    else { growGroup.classList.add('sway'); replayHint.classList.add('show'); }
+  }
+  rafId=requestAnimationFrame(frame);
+}
+
+function finishInstant(){
+  bible.style.opacity=1; bible.setAttribute('transform','translate(0,0)');
+  seed.style.opacity=1; seed.setAttribute('cy',104);
+  rings.forEach((r,i)=>{r.style.opacity=1;r.setAttribute('rx',ringTargets[i].rx);r.setAttribute('ry',ringTargets[i].ry);});
+  stem.style.strokeDashoffset=0; halo.style.strokeDashoffset=0;
+  leafL.setAttribute('transform',''); leafR.setAttribute('transform','');
+  caption.style.opacity=1; caption.style.transform='none';
+}
+
+stage.addEventListener('click',play);
+window.addEventListener('load',play);
+</script>
+</body>
+</html>

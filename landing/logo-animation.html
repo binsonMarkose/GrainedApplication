@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grained — logo animation</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{ --grove:#1E4B2C; --gold:#C29A45; --cream:#F8F5EC; --ink:#22301F; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{min-height:100vh;background:var(--cream);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:26px;padding:40px}
+  #logo{width:min(360px,80vw);height:auto;overflow:visible}
+  .word{font-family:'Fraunces',Georgia,serif;font-size:2.4rem;letter-spacing:.06em;
+    color:var(--grove);opacity:0}
+  .tag{font-size:.72rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--gold);margin-top:4px;opacity:0}
+  .cap{text-align:center}
+  button{font:inherit;font-weight:600;font-size:.9rem;color:var(--cream);background:var(--grove);
+    border:none;border-radius:100px;padding:12px 26px;cursor:pointer;transition:background .2s,transform .15s}
+  button:hover{background:#16371F;transform:translateY(-1px)}
+  .hint{font-size:.78rem;color:#8a917e;max-width:34ch;text-align:center}
+</style>
+</head>
+<body>
+  <svg id="logo" viewBox="0 0 180 214" role="img" aria-label="Grained logo drawing animation">
+    <!-- growth rings (drawn one by one like a pen) -->
+    <g id="rings" fill="none" stroke="#C29A45">
+      <ellipse cx="90" cy="104" rx="16" ry="15.4" stroke-width="3.4"/>
+      <ellipse cx="89" cy="105" rx="28" ry="27.2" stroke-width="2.8"/>
+      <ellipse cx="91" cy="103" rx="40" ry="39.4" stroke-width="3.6"/>
+      <ellipse cx="90" cy="105" rx="52" ry="51.0" stroke-width="2.6"/>
+      <ellipse cx="89" cy="104" rx="64" ry="63.2" stroke-width="3.2"/>
+    </g>
+    <!-- cream halo parts the rings so the stem reads cleanly -->
+    <path id="halo" d="M 90 106 C 88 84, 92 62, 90 34" fill="none" stroke="#F8F5EC" stroke-width="13" stroke-linecap="round"/>
+    <circle id="seed" cx="90" cy="104" r="5.2" fill="#C29A45"/>
+    <!-- sprout: stem first, then the two leaves unfurl out of it -->
+    <path id="stem" d="M 90 100 C 88 82, 92 60, 90 34" fill="none" stroke="#2E6B3E" stroke-width="4.6" stroke-linecap="round"/>
+    <path id="leafL" d="M 90 38 Q 73 34 67 15 Q 86 19 90 38 Z" fill="#2E6B3E"/>
+    <path id="leafR" d="M 90 31 Q 104 27 110 8 Q 93 12 90 31 Z" fill="#3E8A50"/>
+
+    <!-- open Bible: two pages hinged at the spine, opening from a closed book -->
+    <g id="bible">
+      <g id="bibleLeft">
+        <path d="M 90 166 C 72 157, 48 156, 20 162 L 20 186 C 48 180, 72 181, 90 190 L 90 166 Z" fill="#1E4B2C"/>
+        <g stroke="#F8F5EC" stroke-width="2.6" stroke-linecap="round" fill="none" opacity=".9">
+          <path d="M 54 162 L 54 180"/>
+          <path d="M 46.5 168 L 61.5 168"/>
+        </g>
+      </g>
+      <g id="bibleRight">
+        <path d="M 90 166 C 108 157, 132 156, 160 162 L 160 186 C 132 180, 108 181, 90 190 L 90 166 Z" fill="#1E4B2C"/>
+        <g stroke="#F8F5EC" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".9">
+          <path d="M 98 169 C 112 163, 130 163, 148 168"/>
+          <path d="M 98 177 C 112 171, 130 171, 148 176"/>
+        </g>
+      </g>
+      <path id="spineLine" d="M 90 167 L 90 189" stroke="#F8F5EC" stroke-width="2.2" stroke-linecap="round"/>
+      <g id="baselines" fill="none" stroke="#1E4B2C" stroke-linecap="round">
+        <path d="M 26 192 C 50 186.5, 72 187.5, 90 196 C 108 187.5, 130 186.5, 154 192" stroke-width="3"/>
+        <path d="M 33 198 C 54 193, 72 194, 90 202 C 108 194, 126 193, 147 198" stroke-width="3"/>
+      </g>
+    </g>
+  </svg>
+
+  <div class="cap">
+    <div class="word" id="word">grained</div>
+    <div class="tag" id="tag">where faith is ingrained</div>
+  </div>
+
+  <button id="replay">▶ Replay animation</button>
+  <div class="hint">The closed Bible opens · the rings draw in like tree grain · the sprout rises and its leaves unfurl</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const rings   = [...document.querySelectorAll('#rings ellipse')];
+const bibleL  = $('bibleLeft'), bibleR = $('bibleRight'), spineLine = $('spineLine');
+const baseEls = [...document.querySelectorAll('#baselines path')];
+const stem = $('stem'), seed = $('seed'), leafL = $('leafL'), leafR = $('leafR');
+const word = $('word'), tag = $('tag');
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// stroke lengths so we can "draw" paths
+const stemLen = stem.getTotalLength();
+const ringLen = rings.map(r => r.getTotalLength());
+const baseLen = baseEls.map(p => p.getTotalLength());
+
+// transform pivots ----------------------------------------------------------
+// the two pages hinge on the spine (x=90); leaves grow out of their stem joint
+[bibleL, bibleR].forEach(g => { g.style.transformBox='view-box'; g.style.transformOrigin='90px 178px'; });
+spineLine.style.transformBox='view-box'; spineLine.style.transformOrigin='90px 178px';
+seed.style.transformBox='fill-box'; seed.style.transformOrigin='center';
+leafL.style.transformBox='view-box'; leafL.style.transformOrigin='90px 38px';
+leafR.style.transformBox='view-box'; leafR.style.transformOrigin='90px 31px';
+
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+const easeOutBack = t => { const c = 2.1; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+
+function reset(){
+  // closed book: both pages collapsed onto the spine
+  bibleL.style.transform = 'scaleX(0.04)';
+  bibleR.style.transform = 'scaleX(0.04)';
+  spineLine.style.opacity = 0;
+  baseEls.forEach((p,i)=>{ p.style.strokeDasharray = baseLen[i]; p.style.strokeDashoffset = baseLen[i]; });
+  rings.forEach((r,i)=>{ r.style.strokeDasharray = ringLen[i]; r.style.strokeDashoffset = ringLen[i]; });
+  seed.style.transform = 'scale(0)';
+  stem.style.strokeDasharray = stemLen; stem.style.strokeDashoffset = stemLen;
+  // leaves folded shut against the stem (scaled to nothing, rotated inward)
+  leafL.style.transform = 'rotate(24deg) scale(0)';
+  leafR.style.transform = 'rotate(-24deg) scale(0)';
+  word.style.opacity = 0; tag.style.opacity = 0;
+}
+
+// timeline: pure functions of elapsed seconds -------------------------------
+const steps = [
+  // 1. the closed Bible opens — pages swing out from the spine
+  {at:0.10, dur:0.80, tick:p=>{ bibleL.style.transform = 'scaleX(' + (0.04 + 0.96*easeOutBack(p)) + ')'; }},
+  {at:0.22, dur:0.80, tick:p=>{ bibleR.style.transform = 'scaleX(' + (0.04 + 0.96*easeOutBack(p)) + ')'; }},
+  // 2. spine + base lines settle in
+  {at:0.85, dur:0.45, tick:p=>{ spineLine.style.opacity = easeOut(p); }},
+  ...baseEls.map((p,i)=>({at:0.95+i*0.14, dur:0.55, tick:q=>{ p.style.strokeDashoffset = baseLen[i]*(1-easeOut(q)); }})),
+  // 3. the rings are drawn one at a time, inner to outer (like tree grain)
+  ...rings.map((r,i)=>({at:1.6+i*0.34, dur:0.62, tick:q=>{ r.style.strokeDashoffset = ringLen[i]*(1-easeOut(q)); }})),
+  // 4. seed appears at the heart
+  {at:3.45, dur:0.4, tick:p=>{ seed.style.transform = 'scale(' + easeOutBack(p) + ')'; }},
+  // 5. the stem draws upward
+  {at:3.65, dur:0.85, tick:p=>{ stem.style.strokeDashoffset = stemLen*(1-easeOut(p)); }},
+  // 6. as the stem reaches the top, the leaves unfurl OUT of it (rotate open + grow)
+  {at:4.35, dur:0.55, tick:p=>{ const e=easeOutBack(p); leafL.style.transform = 'rotate(' + (24*(1-e)) + 'deg) scale(' + e + ')'; }},
+  {at:4.55, dur:0.55, tick:p=>{ const e=easeOutBack(p); leafR.style.transform = 'rotate(' + (-24*(1-e)) + 'deg) scale(' + e + ')'; }},
+  // 7. the wordmark fades up
+  {at:5.05, dur:0.7, tick:p=>{ word.style.opacity = easeOut(p); tag.style.opacity = easeOut(p); }},
+];
+const total = 6.0;
+
+// render the exact frame at time t (used by rAF and by ?t=… static captures)
+function applyAt(t){
+  reset();
+  for(const s of steps){ if(t >= s.at){ s.tick(Math.min(1, (t - s.at) / s.dur)); } }
+}
+
+let rafId = null;
+function play(){
+  cancelAnimationFrame(rafId);
+  if(reduced){ applyAt(total); return; }
+  const t0 = performance.now();
+  (function frame(now){
+    const t = (now - t0) / 1000;
+    applyAt(Math.min(t, total));
+    if(t < total) rafId = requestAnimationFrame(frame);
+  })(t0);
+}
+
+$('replay').addEventListener('click', play);
+document.addEventListener('DOMContentLoaded', ()=>{
+  const m = new URLSearchParams(location.search).get('t');
+  if(m !== null){ applyAt(parseFloat(m)); } else { play(); }
+});
+</script>
+</body>
+</html>

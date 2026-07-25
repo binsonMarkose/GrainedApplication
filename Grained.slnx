@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Grained.Api/Grained.Api.csproj" />
+  <Project Path="Grained.Application/Grained.Application.csproj" />
+  <Project Path="Grained.Domain/Grained.Domain.csproj" />
+  <Project Path="Grained.Infrastructure/Grained.Infrastructure.csproj" />
+  <Project Path="Grained.Tests/Grained.Tests.csproj" />
+</Solution>

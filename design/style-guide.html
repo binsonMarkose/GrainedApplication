@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grained — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grove:#1E4B2C; --grove-deep:#16371F;
+  --gold:#C29A45; --gold-soft:#D9B45C; --gold-deep:#8A6D1D;
+  --leaf:#2E6B3E; --leaf-light:#A8CD9C; --leaf-bright:#3E8A50;
+  --cream:#F8F5EC; --cream-deep:#F1EBDC; --ink:#22301F;
+  --err-text:#B91C1C; --err-bg:#FEF2F2; --err-border:#FECACA;
+  --display:'Fraunces',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.15;color:var(--grove-deep);text-wrap:balance}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep)}
+.mono{font-family:var(--mono);font-size:.8rem}
+.muted{color:color-mix(in srgb,var(--ink) 55%,transparent)}
+
+/* header */
+header{background:linear-gradient(160deg,var(--grove),var(--grove-deep));color:var(--cream);padding:44px 0 40px}
+header .wrap{display:flex;align-items:center;gap:18px}
+header .badge{background:var(--cream);border-radius:14px;padding:9px;display:grid;place-items:center;flex:0 0 auto}
+header .badge svg{width:44px;height:44px;display:block}
+header h1{font-family:Georgia,'Times New Roman',serif;color:var(--cream);font-size:2.4rem;letter-spacing:.03em;line-height:1}
+header .eyebrow{color:var(--gold-soft);margin-bottom:6px}
+header p{color:#cfdac6;font-size:.95rem;margin-top:6px;max-width:52ch}
+
+/* section rhythm */
+section{padding:56px 0 12px}
+section > .wrap > .sec-head{margin-bottom:26px}
+.sec-head h2{font-size:1.6rem}
+.sec-head p{color:color-mix(in srgb,var(--ink) 55%,transparent);margin-top:4px;max-width:60ch;font-size:.95rem}
+.rule{border:none;border-top:1px solid var(--cream-deep);margin:0}
+
+/* palette */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.sw{background:#fff;border:1px solid var(--cream-deep);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.sw .chip{height:88px}
+.sw .meta{padding:12px 14px}
+.sw .name{font-weight:600;font-size:.92rem}
+.sw .hex{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
+.sw .role{font-size:.78rem;color:color-mix(in srgb,var(--ink) 55%,transparent);margin-top:6px}
+.group-label{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin:26px 0 12px}
+
+/* type specimens */
+.specimens{display:flex;flex-direction:column;gap:22px}
+.spec{display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:baseline;padding-bottom:22px;border-bottom:1px solid var(--cream-deep)}
+.spec:last-child{border-bottom:none}
+.spec .label .k{font-weight:600;font-size:.9rem}
+.spec .label .v{font-size:.78rem;color:color-mix(in srgb,var(--ink) 55%,transparent);margin-top:3px}
+.t-page{font-family:var(--display);font-weight:500;font-size:2rem;color:var(--grove-deep)}
+.t-section{font-family:var(--display);font-weight:500;font-size:1.25rem;color:var(--grove-deep)}
+.t-stat{font-family:var(--display);font-weight:500;font-size:2.5rem;color:var(--grove-deep)}
+.t-tag{font-family:var(--display);font-style:italic;font-size:1.1rem;color:var(--gold)}
+.t-body{font-size:.95rem}
+.t-label{font-weight:500;font-size:.9rem;color:color-mix(in srgb,var(--ink) 70%,transparent)}
+.t-btn{font-weight:600;font-size:.9rem}
+
+/* foundations */
+.found{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:720px){.found{grid-template-columns:1fr}.spec{grid-template-columns:1fr;gap:8px}}
+.radii{display:flex;gap:16px;flex-wrap:wrap}
+.radii .r{text-align:center;font-size:.75rem;color:color-mix(in srgb,var(--ink) 55%,transparent)}
+.radii .r i{display:block;width:64px;height:44px;background:var(--leaf-light);border:1px solid var(--leaf);margin-bottom:6px}
+.shadows{display:flex;gap:18px;flex-wrap:wrap}
+.shadows .s{width:120px;height:74px;background:#fff;border:1px solid var(--cream-deep);border-radius:16px;display:grid;place-items:end center;font-size:.72rem;color:color-mix(in srgb,var(--ink) 55%,transparent);padding-bottom:8px}
+.s.sm{box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.s.md{box-shadow:0 16px 40px rgba(30,75,44,.10)}
+.s.modal{box-shadow:0 18px 50px rgba(22,55,31,.30)}
+
+/* component gallery */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.demo{background:#fff;border:1px solid var(--cream-deep);border-radius:16px;padding:22px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.demo h3{font-size:1.05rem;margin-bottom:16px;color:var(--grove-deep)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* buttons */
+.btn{font-family:var(--sans);border:none;border-radius:12px;padding:9px 16px;font-size:.88rem;font-weight:600;cursor:pointer;transition:background .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--grove);color:var(--cream)} .btn-primary:hover{background:var(--grove-deep)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-outline{background:#fff;border:1px solid var(--cream-deep);color:var(--grove)} .btn-outline:hover{background:var(--cream)}
+.btn-ghost{background:transparent;color:var(--grove)} .btn-ghost:hover{background:var(--cream)}
+.btn-danger{background:#fff;border:1px solid var(--err-border);color:var(--err-text)} .btn-danger:hover{background:var(--err-bg)}
+
+/* field */
+.field label{display:block;font-size:.85rem;font-weight:500;color:color-mix(in srgb,var(--ink) 70%,transparent);margin-bottom:6px}
+.field input{width:100%;border:1px solid var(--cream-deep);background:#fff;border-radius:12px;padding:10px 14px;font:inherit;font-size:.9rem;color:var(--ink);outline:none}
+.field input:focus,.field input.focused{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 30%,transparent)}
+.field + .field{margin-top:14px}
+
+/* pills */
+.pill{display:inline-block;border-radius:999px;padding:3px 11px;font-size:.75rem;font-weight:600;letter-spacing:.01em}
+.pill-green{background:color-mix(in srgb,var(--leaf-light) 40%,transparent);color:var(--grove-deep)}
+.pill-gold{background:color-mix(in srgb,var(--gold-soft) 30%,transparent);color:var(--gold-deep)}
+.pill-gray{background:var(--cream-deep);color:color-mix(in srgb,var(--ink) 55%,transparent)}
+.pill-red{background:#fde3e3;color:var(--err-text)}
+
+/* stat card */
+.stat{position:relative;border:1px solid var(--cream-deep);border-radius:16px;padding:18px;overflow:hidden;background:#fff}
+.stat .bar{position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--grove),var(--grove-deep))}
+.stat .num{font-family:var(--display);font-weight:500;font-size:2.1rem;color:var(--grove-deep);line-height:1}
+.stat .lab{font-size:.85rem;color:color-mix(in srgb,var(--ink) 55%,transparent);margin-top:4px}
+
+/* mini table */
+.mtable{width:100%;border-collapse:collapse;font-size:.85rem}
+.mtable th{background:var(--cream-deep);text-align:left;padding:9px 12px;font-weight:600;color:color-mix(in srgb,var(--ink) 70%,transparent)}
+.mtable th:first-child{border-radius:10px 0 0 0}.mtable th:last-child{border-radius:0 10px 0 0}
+.mtable td{padding:9px 12px;border-top:1px solid var(--cream-deep)}
+
+/* sidebar mini */
+.side{background:linear-gradient(180deg,var(--grove),var(--grove-deep));border-radius:14px;padding:12px;color:var(--cream)}
+.side .item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;font-size:.88rem;color:color-mix(in srgb,#fff 85%,transparent);margin-bottom:4px}
+.side .item.active{background:color-mix(in srgb,var(--gold-soft) 20%,transparent);color:#fff;font-weight:600;box-shadow:inset 3px 0 0 var(--gold-soft)}
+
+/* auth mini */
+.auth{background:linear-gradient(150deg,var(--grove),var(--leaf));border-radius:16px;padding:22px;display:grid;place-items:center}
+.auth .card{background:var(--cream);border-radius:20px;padding:22px;width:100%;max-width:260px;text-align:center;box-shadow:0 18px 40px rgba(22,55,31,.3)}
+.auth .card .w{font-family:Georgia,'Times New Roman',serif;font-size:1.5rem;color:var(--grove-deep);letter-spacing:.04em;margin-top:6px}
+.auth .card .tg{font-family:Georgia,'Times New Roman',serif;text-transform:uppercase;letter-spacing:.22em;font-size:.6rem;color:var(--gold);margin-top:6px}
+
+footer{padding:44px 0 60px;color:color-mix(in srgb,var(--ink) 55%,transparent);font-size:.85rem}
+footer code{font-family:var(--mono);background:var(--cream-deep);padding:2px 6px;border-radius:6px;font-size:.8rem;color:var(--grove-deep)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="badge">
+      <svg viewBox="0 0 512 512" aria-hidden="true">
+        <rect width="512" height="512" rx="112" fill="#1E4B2C"/>
+        <g transform="translate(83,52) scale(1.92)">
+          <g fill="none" stroke="#D9B45C">
+            <ellipse cx="90" cy="104" rx="16" ry="15.4" stroke-width="3.4"/><ellipse cx="89" cy="105" rx="28" ry="27.2" stroke-width="2.8"/><ellipse cx="91" cy="103" rx="40" ry="39.4" stroke-width="3.6"/><ellipse cx="90" cy="105" rx="52" ry="51" stroke-width="2.6"/><ellipse cx="89" cy="104" rx="64" ry="63.2" stroke-width="3.2"/>
+          </g>
+          <path d="M 90 106 C 88 84, 92 62, 90 34" fill="none" stroke="#1E4B2C" stroke-width="13" stroke-linecap="round"/>
+          <circle cx="90" cy="104" r="5.2" fill="#D9B45C"/>
+          <path d="M 90 100 C 88 82, 92 60, 90 34" fill="none" stroke="#A8CD9C" stroke-width="4.6" stroke-linecap="round"/>
+          <path d="M 90 38 Q 73 34 67 15 Q 86 19 90 38 Z" fill="#A8CD9C"/><path d="M 90 31 Q 104 27 110 8 Q 93 12 90 31 Z" fill="#CDE3C2"/>
+          <path d="M 90 166 C 72 157, 48 156, 20 162 L 20 186 C 48 180, 72 181, 90 190 C 108 181, 132 180, 160 186 L 160 162 C 132 156, 108 157, 90 166 Z" fill="#D9B45C"/>
+          <g stroke="#1E4B2C" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".85"><path d="M 54 162 L 54 180" stroke-width="2.6"/><path d="M 46.5 168 L 61.5 168" stroke-width="2.6"/><path d="M 98 169 C 112 163, 130 163, 148 168"/><path d="M 98 177 C 112 171, 130 171, 148 176"/></g>
+          <path d="M 90 167 L 90 189" stroke="#1E4B2C" stroke-width="2.2" stroke-linecap="round"/>
+          <g fill="none" stroke="#D9B45C" stroke-linecap="round"><path d="M 26 192 C 50 186.5, 72 187.5, 90 196 C 108 187.5, 130 186.5, 154 192" stroke-width="3"/><path d="M 33 198 C 54 193, 72 194, 90 202 C 108 194, 126 193, 147 198" stroke-width="3"/></g>
+        </g>
+      </svg>
+    </span>
+    <div>
+      <div class="eyebrow">Design System</div>
+      <h1>grained</h1>
+      <p>The living style guide for the Grained app. Colours, type, and components as currently built — the reference for a Figma redesign. Keep the palette; reimagine the rest.</p>
+    </div>
+  </div>
+</header>
+
+<!-- PALETTE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Colour</h2><p>Grove green + wheat gold + cream is the brand — that combination stays. Hex values are authoritative.</p></div>
+
+    <div class="group-label">Greens</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#1E4B2C"></div><div class="meta"><div class="name">Grove</div><div class="hex"><span class="mono">#1E4B2C</span></div><div class="role">Primary — sidebar, primary buttons, headings</div></div></div>
+      <div class="sw"><div class="chip" style="background:#16371F"></div><div class="meta"><div class="name">Grove deep</div><div class="hex"><span class="mono">#16371F</span></div><div class="role">Hover / gradient end</div></div></div>
+      <div class="sw"><div class="chip" style="background:#2E6B3E"></div><div class="meta"><div class="name">Leaf</div><div class="hex"><span class="mono">#2E6B3E</span></div><div class="role">Secondary green, links, accents</div></div></div>
+      <div class="sw"><div class="chip" style="background:#A8CD9C"></div><div class="meta"><div class="name">Leaf light</div><div class="hex"><span class="mono">#A8CD9C</span></div><div class="role">Success pill fills, tints</div></div></div>
+    </div>
+
+    <div class="group-label">Golds</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#C29A45"></div><div class="meta"><div class="name">Wheat gold</div><div class="hex"><span class="mono">#C29A45</span></div><div class="role">Primary accent — rings, focus ring</div></div></div>
+      <div class="sw"><div class="chip" style="background:#D9B45C"></div><div class="meta"><div class="name">Gold soft</div><div class="hex"><span class="mono">#D9B45C</span></div><div class="role">Active-nav tint, badges</div></div></div>
+      <div class="sw"><div class="chip" style="background:#8A6D1D"></div><div class="meta"><div class="name">Gold deep</div><div class="hex"><span class="mono">#8A6D1D</span></div><div class="role">Readable gold text on light</div></div></div>
+    </div>
+
+    <div class="group-label">Neutrals &amp; status</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F8F5EC;border-bottom:1px solid #F1EBDC"></div><div class="meta"><div class="name">Cream</div><div class="hex"><span class="mono">#F8F5EC</span></div><div class="role">App background, cards on green</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F1EBDC"></div><div class="meta"><div class="name">Cream deep</div><div class="hex"><span class="mono">#F1EBDC</span></div><div class="role">Borders, table headers, fills</div></div></div>
+      <div class="sw"><div class="chip" style="background:#22301F"></div><div class="meta"><div class="name">Ink</div><div class="hex"><span class="mono">#22301F</span></div><div class="role">Body text</div></div></div>
+      <div class="sw"><div class="chip" style="background:#B91C1C"></div><div class="meta"><div class="name">Error</div><div class="hex"><span class="mono">#B91C1C</span></div><div class="role">Validation only — not an accent</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Typography</h2><p><strong>Fraunces</strong> (warm serif) for display &amp; numbers, <strong>Inter</strong> for UI &amp; body. This page renders the real fonts in a browser — install both from Google Fonts in Figma.</p></div>
+    <div class="specimens">
+      <div class="spec"><div class="label"><div class="k">Page title</div><div class="v">Fraunces · 500 · 30px</div></div><div class="t-page">Welcome back, Grace</div></div>
+      <div class="spec"><div class="label"><div class="k">Section title</div><div class="v">Fraunces · 500 · 18–20px</div></div><div class="t-section">Recent attendance</div></div>
+      <div class="spec"><div class="label"><div class="k">Stat number</div><div class="v">Fraunces · 500 · 36px</div></div><div class="t-stat">128</div></div>
+      <div class="spec"><div class="label"><div class="k">Tagline</div><div class="v">Fraunces italic · 400</div></div><div class="t-tag">where faith is ingrained</div></div>
+      <div class="spec"><div class="label"><div class="k">Body / table</div><div class="v">Inter · 400 · 14px · Ink</div></div><div class="t-body">Children enrolled in your ministry, grouped by class. Tap a row to edit.</div></div>
+      <div class="spec"><div class="label"><div class="k">Label</div><div class="v">Inter · 500 · 14px · Ink 70%</div></div><div class="t-label">Parent / guardian email</div></div>
+      <div class="spec"><div class="label"><div class="k">Button</div><div class="v">Inter · 600 · 14px</div></div><div class="t-btn">Save changes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDATIONS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Foundations</h2><p>Radii, elevation, spacing. 4px spacing base; 1px borders in Cream deep.</p></div>
+    <div class="found">
+      <div>
+        <div class="group-label">Radius</div>
+        <div class="radii">
+          <div class="r"><i style="border-radius:8px"></i>md · 8</div>
+          <div class="r"><i style="border-radius:12px"></i>xl · 12</div>
+          <div class="r"><i style="border-radius:16px"></i>2xl · 16</div>
+          <div class="r"><i style="border-radius:24px"></i>3xl · 24</div>
+          <div class="r"><i style="border-radius:999px"></i>full</div>
+        </div>
+        <div class="group-label" style="margin-top:28px">Spacing (px)</div>
+        <div class="mono muted">4 · 8 · 12 · 16 · 20 · 24 · 32 &nbsp;— page pad 24 (16 mobile), card pad 20, field gap 16</div>
+      </div>
+      <div>
+        <div class="group-label">Elevation</div>
+        <div class="shadows">
+          <div class="s sm">shadow-sm</div>
+          <div class="s md">hover-md</div>
+          <div class="s modal">modal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Components</h2><p>The live building blocks. Redesign these freely — keep their semantics (state read via colour + shape).</p></div>
+    <div class="gallery">
+
+      <div class="demo"><h3>Buttons</h3>
+        <div class="row">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-gold">Gold</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+          <button class="btn btn-danger">Danger</button>
+        </div>
+      </div>
+
+      <div class="demo"><h3>Input &amp; label</h3>
+        <div class="field"><label>Church name</label><input value="Grace Community Church"></div>
+        <div class="field"><label>Admin email (focus)</label><input class="focused" value="pastor@grace.org"></div>
+      </div>
+
+      <div class="demo"><h3>Status pills</h3>
+        <div class="row">
+          <span class="pill pill-green">Active</span>
+          <span class="pill pill-gold">Pending invite</span>
+          <span class="pill pill-gray">Disabled</span>
+          <span class="pill pill-red">Error</span>
+          <span class="pill pill-green">Present</span>
+          <span class="pill pill-gray">Draft</span>
+        </div>
+      </div>
+
+      <div class="demo"><h3>Stat card</h3>
+        <div class="stat"><span class="bar"></span><div class="num">128</div><div class="lab">Children</div></div>
+      </div>
+
+      <div class="demo"><h3>Table</h3>
+        <table class="mtable">
+          <thead><tr><th>Name</th><th>Class</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Ruth Celine</td><td>Under 5</td><td><span class="pill pill-green">Active</span></td></tr>
+            <tr><td>Sam Harbour</td><td>Ages 5–10</td><td><span class="pill pill-gray">Disabled</span></td></tr>
+          </tbody>
+        </table>
+        <p class="muted" style="font-size:.78rem;margin-top:10px">On mobile each row becomes a stacked card — no sideways scroll.</p>
+      </div>
+
+      <div class="demo"><h3>Sidebar nav</h3>
+        <div class="side">
+          <div class="item active">📊 Dashboard</div>
+          <div class="item">🧒 Children</div>
+          <div class="item">📖 Lessons</div>
+        </div>
+      </div>
+
+      <div class="demo"><h3>Card surface</h3>
+        <p class="t-section" style="font-size:1.1rem;margin-bottom:6px">Lesson details</p>
+        <p class="t-body muted">White card · 1px Cream-deep border · 16px radius · soft shadow. The default content surface on the cream page.</p>
+      </div>
+
+      <div class="demo"><h3>Auth screen</h3>
+        <div class="auth"><div class="card">
+          <div style="font-size:1.6rem">🌱</div>
+          <div class="w">grained</div>
+          <div class="tg">where faith is ingrained</div>
+          <button class="btn btn-primary" style="width:100%;margin-top:14px">Log in</button>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<footer>
+  <div class="wrap">
+    Tokens: <code>design/grained.tokens.json</code> (import with the Tokens Studio for Figma plugin) ·
+    Full spec: <code>design/DESIGN_SYSTEM.md</code> · Logo art: <code>brand/</code>.
+    Fonts: <strong>Fraunces</strong> + <strong>Inter</strong> (Google Fonts). Keep grove-green + wheat-gold + cream.
+  </div>
+</footer>
+
+</body>
+</html>
